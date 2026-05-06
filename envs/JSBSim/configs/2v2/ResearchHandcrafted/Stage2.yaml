@@ -1,0 +1,114 @@
+# task config
+task: research_multiplecombat
+use_handcrafted_opponent: true
+handcrafted_opponent_level: medium
+use_artillery: true
+use_low_altitude_safety_shield: true
+artillery_damage_scale: 6.0
+artillery_close_range_km: 1.4
+artillery_far_range_km: 4.2
+artillery_max_attack_angle_deg: 36
+timeout_win_reward: 550.0
+timeout_loss_penalty: -550.0
+timeout_draw_penalty: -220.0
+artillery_kill_reward: 80.0
+artillery_loss_penalty: -80.0
+low_altitude_safety_floor_m: 3450
+low_altitude_safety_recovery_band_m: 2100
+low_altitude_safety_max_sink_rate_mps: 34.0
+low_altitude_safety_pullup_elevator_norm: -0.72
+low_altitude_safety_level_elevator_norm: -0.20
+low_altitude_safety_max_aileron_norm: 0.15
+low_altitude_safety_max_rudder_norm: 0.15
+low_altitude_safety_min_throttle_norm: 0.82
+
+# simulation config
+sim_freq: 60
+agent_interaction_steps: 12
+
+# termination config
+max_steps: 850
+altitude_limit: 2500
+acceleration_limit_x: 10.0
+acceleration_limit_y: 10.0
+acceleration_limit_z: 10.0
+max_distance_from_center_m: 25000
+episode_result_margin: 0.03
+
+# initial state randomization
+initial_state_randomization: {
+  longitude_deg: 0.003,
+  latitude_deg: 0.003,
+  altitude_ft: 800,
+  heading_deg: 12,
+  speed_fps: 40,
+}
+
+# aircraft config
+aircraft_configs: {
+  A0100: {
+    color: Red,
+    model: f16,
+    init_state: {
+      ic_long_gc_deg: 119.995,
+      ic_lat_geod_deg: 60.0,
+      ic_h_sl_ft: 19800,
+      ic_psi_true_deg: 8.0,
+      ic_u_fps: 790.0,
+    },
+  },
+  A0200: {
+    color: Red,
+    model: f16,
+    init_state: {
+      ic_long_gc_deg: 120.015,
+      ic_lat_geod_deg: 59.998,
+      ic_h_sl_ft: 20200,
+      ic_psi_true_deg: -6.0,
+      ic_u_fps: 810.0,
+    },
+  },
+  B0100: {
+    color: Blue,
+    model: f16,
+    init_state: {
+      ic_h_sl_ft: 20300,
+      ic_long_gc_deg: 120.0,
+      ic_lat_geod_deg: 60.1,
+      ic_psi_true_deg: 184.0,
+      ic_u_fps: 805.0,
+    },
+  },
+  B0200: {
+    color: Blue,
+    model: f16,
+    init_state: {
+      ic_h_sl_ft: 19700,
+      ic_long_gc_deg: 120.02,
+      ic_lat_geod_deg: 60.102,
+      ic_psi_true_deg: 174.0,
+      ic_u_fps: 795.0,
+    },
+  }
+}
+
+battle_field_center: [120.005, 60.05, 0.0]
+
+# reward config
+PostureReward_scale: 13.0
+PostureReward_potential: true
+PostureReward_orientation_version: v2
+PostureReward_range_version: v3
+
+AltitudeReward_safe_altitude: 4.8
+AltitudeReward_danger_altitude: 4.0
+AltitudeReward_Kv: 0.35
+
+RelativeAltitudeReward_scale: 2.5
+RelativeAltitudeReward_KH: 0.9
+
+TeamSpacingReward_scale: 1.2
+TeamSpacingReward_target_distance: 2200
+TeamSpacingReward_min_distance: 500
+TeamSpacingReward_max_distance: 7000
+TeamSpacingReward_sigma: 1500

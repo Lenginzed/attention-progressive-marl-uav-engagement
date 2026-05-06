@@ -1,0 +1,93 @@
+# task config
+task: research_multiplecombat
+
+# simulation config
+sim_freq: 60
+agent_interaction_steps: 12
+
+# termination config
+max_steps: 700
+altitude_limit: 2500
+acceleration_limit_x: 10.0
+acceleration_limit_y: 10.0
+acceleration_limit_z: 10.0
+max_distance_from_center_m: 22000
+episode_result_margin: 0.08
+
+# initial state randomization
+initial_state_randomization: {
+  longitude_deg: 0.0015,
+  latitude_deg: 0.0015,
+  altitude_ft: 400,
+  heading_deg: 6,
+  speed_fps: 20,
+}
+
+# aircraft config
+aircraft_configs: {
+  A0100: {
+    color: Red,
+    model: f16,
+    init_state: {
+      ic_long_gc_deg: 120.0,
+      ic_lat_geod_deg: 60.0,
+      ic_h_sl_ft: 20000,
+      ic_psi_true_deg: 0.0,
+      ic_u_fps: 800.0,
+    },
+  },
+  A0200: {
+    color: Red,
+    model: f16,
+    init_state: {
+      ic_long_gc_deg: 120.01,
+      ic_lat_geod_deg: 60.0,
+      ic_h_sl_ft: 20000,
+      ic_psi_true_deg: 0.0,
+      ic_u_fps: 800.0,
+    },
+  },
+  B0100: {
+    color: Blue,
+    model: f16,
+    init_state: {
+      ic_h_sl_ft: 20000,
+      ic_long_gc_deg: 120.0,
+      ic_lat_geod_deg: 60.08,
+      ic_psi_true_deg: 180.0,
+      ic_u_fps: 800.0,
+    },
+  },
+  B0200: {
+    color: Blue,
+    model: f16,
+    init_state: {
+      ic_h_sl_ft: 20000,
+      ic_long_gc_deg: 120.01,
+      ic_lat_geod_deg: 60.08,
+      ic_psi_true_deg: 180.0,
+      ic_u_fps: 800.0,
+    },
+  }
+}
+
+battle_field_center: [120.0, 60.04, 0.0]
+
+# reward config
+PostureReward_scale: 12.0
+PostureReward_potential: true
+PostureReward_orientation_version: v2
+PostureReward_range_version: v3
+
+AltitudeReward_safe_altitude: 4.0
+AltitudeReward_danger_altitude: 3.5
+AltitudeReward_Kv: 0.2
+
+RelativeAltitudeReward_scale: 2.0
+RelativeAltitudeReward_KH: 0.8
+
+TeamSpacingReward_scale: 1.5
+TeamSpacingReward_target_distance: 1800
+TeamSpacingReward_min_distance: 500
+TeamSpacingReward_max_distance: 6500
+TeamSpacingReward_sigma: 1200
